@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="max_edittext_length">3</integer>
+    <integer name="BrightnessEditText">0</integer>
+    <integer name="SaturationEditText">0</integer>
+    <integer name="HueEditText">0</integer>
+</resources>

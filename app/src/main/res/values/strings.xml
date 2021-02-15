@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Colors</string>
+    <string name="hello_world">Click Me!</string>
+    <string name="NerdMcDuck">NerdMcDuck</string>
+    <string name="toast_msg">Dark Mode Off</string>
+    <string name="hex_str">#</string>
+    <string name="hex_color_code">Color Code:</string>
+    <string name="rgb_code_label">RGB Code:</string>
+    <string name="Complimentary_Color">Complimentary Color:</string>
+    <string name="encycolorpedia">https://encycolorpedia.com/</string>
+    <string name="rgb_color_code">(255,255,255)</string>
+    <string name="cntDescSaturation">Saturation</string>
+    <string name="saturationAbr">S</string>
+    <string name="cntDescHue">Hue</string>
+    <string name="hueAbr">H</string>
+    <string name="cntDescBrightness">Brightness</string>
+    <string name="brightnessAbr">B</string>
+    <string name="BrightnessEditText">100</string>
+</resources>
