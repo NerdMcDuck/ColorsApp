@@ -450,7 +450,14 @@ public class MainActivity extends AppCompatActivity {
         return (ColorDrawable) view.getBackground();
     }
 
-    //Set the background's complimentary color to the TextVIew
+    /**
+     * Set the background's complimentary color to the TextVIew
+     * by inverting the background color's rgb values while leaving the Alpha value as is.
+     *
+     * @param view - The View form which you want to take the color from.
+     * @param tv   - The Textview for which you want to change the color to.
+     *             As TextView is pass-by-reference, we do not need to return a value.
+     */
     private void setComplimentaryColor(View view, TextView tv) {
         Log.d("compColor", "View: " + view.getBackground());
         tv.setTextColor(getViewColorProperties(view).getColor() ^ 0x00ffffff);
@@ -484,7 +491,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //add listener to button to change background color when clicked
+    /**
+     * Add listener to button to change background color when clicked
+     *
+     * @param bgToggleBtn - The button for which we would attached this listener to
+     *                    This is no longer used. This button will be repurposed to do something else
+     */
     protected void bgBtnOnClickListener(@org.jetbrains.annotations.NotNull Button bgToggleBtn) {
         @ColorInt
         int[] color = new int[]{Color.GREEN, Color.BLUE, Color.BLACK, Color.RED, Color.WHITE, Color.CYAN, Color.GRAY,
