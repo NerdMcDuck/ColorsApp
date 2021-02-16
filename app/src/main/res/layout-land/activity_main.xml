@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:visibility="visible"
+    tools:context="com.nerdmcduck.colors.MainActivity">
+
+    <!-- <Button
+         android:id="@+id/bg_toggle_btn"
+         style="@style/Widget.AppCompat.Button.Borderless"
+         android:layout_width="163dp"
+         android:layout_height="wrap_content"
+         android:layout_centerInParent="true"
+         android:layout_marginEnd="110dp"
+         android:layout_marginBottom="43dp"
+         android:fontFamily="monospace"
+         android:text="@string/hello_world"
+         android:textAllCaps="true"
+         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+         android:textColor="#FFFFFF"
+
+         android:textStyle="bold"
+         android:typeface="monospace"
+         app:strokeColor="#02CD1A1A" /> -->
+
+
+    <!-- Continuous slider -->
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/color_display_view"
+        android:layout_width="757dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/Transparent"
+        android:labelFor="@id/hexString"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/linearSliderView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.242"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555">
+
+        <!-- Color Code Layout-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/hexColorCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/aldrich"
+                android:text="@string/hex_color_code"
+                android:textAlignment="inherit"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/hexString"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_marginStart="200dp"
+                android:fontFamily="@font/aldrich"
+                android:linksClickable="true"
+                android:text="@string/hex_str"
+                android:textAlignment="inherit"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <!-- RGN Color layout-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/rgbCodeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/aldrich"
+                android:text="@string/rgb_code_label"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/rgbColorCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:layout_marginStart="200dp"
+                android:text="@string/rgb_color_code"
+                android:textAlignment="inherit"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearSliderView"
+        android:layout_width="477dp"
+        android:layout_height="187dp"
+        android:layout_marginTop="8dp"
+
+
+        android:background="#99FFFFFF"
+        android:backgroundTintMode="screen"
+        android:labelFor="@id/hexString"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/color_display_view">
+
+        <!-- Hue -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/cntDescHue"
+                android:fontFamily="@font/amaranth_bold"
+                android:labelFor="@id/editTextHue"
+                android:text="@string/hueAbr"
+                android:textAlignment="center"
+                android:textColor="#4D4D4D"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!--Hue Slider -->
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderHue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/cardview_default_elevation"
+                android:layout_marginTop="@dimen/cardview_default_elevation"
+                android:layout_marginBottom="@dimen/cardview_default_elevation"
+                android:layout_weight="1"
+                android:valueFrom="0f"
+                android:valueTo="360f"
+                app:haloRadius="30dp"
+                app:labelStyle="@style/Widget.App.Tooltip"
+                app:trackHeight="10dp" />
+            <!--Numeric Value -->
+            <EditText
+                android:id="@+id/editTextHue"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="4dp"
+                android:autofillHints="numeric,integer"
+                android:backgroundTint="@color/Transparent"
+                android:contentDescription="@string/cntDescHue"
+                android:fontFamily="@font/amaranth_bold"
+                android:inputType="number"
+                android:maxEms="2"
+                android:maxLength="@integer/max_edittext_length"
+                android:minEms="2"
+                android:text="@integer/HueEditText"
+                android:textColor="#4D4D4D"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Saturation -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/cntDescSaturation"
+                android:fontFamily="@font/amaranth_bold"
+                android:labelFor="@id/editTextSaturation"
+                android:text="@string/saturationAbr"
+                android:textAlignment="center"
+                android:textColor="#4D4D4D"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- Saturation Slider -->
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderSaturation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/cardview_default_elevation"
+                android:layout_marginTop="@dimen/cardview_default_elevation"
+                android:layout_marginBottom="@dimen/cardview_default_elevation"
+                android:layout_weight="1"
+                android:valueFrom="0f"
+                android:valueTo="100f"
+                app:haloRadius="30dp"
+                app:labelStyle="@style/Widget.App.Tooltip"
+                app:trackHeight="10dp" />
+
+            <!-- Numeric Value -->
+            <EditText
+                android:id="@+id/editTextSaturation"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="4dp"
+                android:autofillHints="numeric,integer"
+                android:backgroundTint="@color/Transparent"
+                android:contentDescription="@string/cntDescSaturation"
+                android:fontFamily="@font/amaranth_bold"
+                android:inputType="number"
+                android:maxEms="2"
+                android:maxLength="@integer/max_edittext_length"
+                android:minEms="2"
+                android:text="@integer/SaturationEditText"
+                android:textColor="#4D4D4D"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Value/Brightness -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/cntDescBrightness"
+                android:fontFamily="@font/amaranth_bold"
+                android:labelFor="@id/editTextBrightness"
+                android:text="@string/brightnessAbr"
+                android:textAlignment="center"
+                android:textColor="#4D4D4D"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- Value/Brightness Slider -->
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderBrightness"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/cardview_default_elevation"
+                android:layout_marginTop="@dimen/cardview_default_elevation"
+                android:layout_marginBottom="@dimen/cardview_default_elevation"
+                android:layout_weight="1"
+                android:valueFrom="0f"
+                android:valueTo="100f"
+                app:haloRadius="30dp"
+                app:labelStyle="@style/Widget.App.Tooltip"
+                app:trackHeight="10dp" />
+
+            <!-- Numeric Value -->
+            <EditText
+                android:id="@+id/editTextBrightness"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="4dp"
+                android:autofillHints="numeric,integer"
+                android:backgroundTint="@color/Transparent"
+                android:contentDescription="@string/cntDescBrightness"
+                android:fontFamily="@font/amaranth_bold"
+                android:inputType="number"
+                android:maxEms="2"
+                android:maxLength="@integer/max_edittext_length"
+                android:minEms="2"
+                android:text="@integer/BrightnessEditText"
+                android:textColor="#4D4D4D"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/nerdmcduck"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/aldrich"
+            android:text="@string/NerdMcDuck"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
