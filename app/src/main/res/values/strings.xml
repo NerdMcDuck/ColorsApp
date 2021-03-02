@@ -16,4 +16,6 @@
     <string name="cntDescBrightness">Brightness</string>
     <string name="brightnessAbr">B</string>
     <string name="BrightnessEditText">100</string>
+    <string name="hide">Hide</string>
+    <string name="show">Show</string>
 </resources>
