@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,10 +36,10 @@ TODO:
 public class MainActivity extends AppCompatActivity {
 
     protected View screenView;
-    //protected Button bgToggleBtn;
+    protected Button hide_content_btn;
     protected TextView tvNerdmcduck, tvHexStr, tvhexColorCode, tvRGBLabel, tvRGBCode;
     protected Slider sliderHue, sliderSat, sliderBright;
-    protected EditText etHue, etSat, etBrghtness;
+    protected EditText etHue, etSat, etBrightness;
     private float[] commonHSV;
 
 
@@ -52,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Initialize the View by getting the id of the parent layout
         screenView = findViewById(R.id.rView);
-        //bgToggleBtn = findViewById(R.id.bg_toggle_btn);
-        tvNerdmcduck = findViewById(R.id.nerdmcduck);
+        hide_content_btn = findViewById(R.id.hide_content_btn);
+        //tvNerdmcduck = findViewById(R.id.nerdmcduck);
         tvHexStr = findViewById(R.id.hexString);
         tvhexColorCode = findViewById(R.id.hexColorCode);
         tvRGBLabel = findViewById(R.id.rgbCodeLabel);
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         sliderBright = findViewById(R.id.sliderBrightness);
         etHue = findViewById(R.id.editTextHue);
         etSat = findViewById(R.id.editTextSaturation);
-        etBrghtness = findViewById(R.id.editTextBrightness);
+        etBrightness = findViewById(R.id.editTextBrightness);
 
         //Retrieve previously saved values if this is not the first time calling onCreate()
         if (savedInstanceState != null) {
@@ -85,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
             sliderSat.setValue(savedInstanceState.getFloat("sliderSatValue"));
             sliderBright.setValue(savedInstanceState.getFloat("sliderBrightValue"));
             setTextViewColors();
+
+            //Visibility
+            hide_content_btn.setText(savedInstanceState.getCharSequence("HideContentBtnState"));
+            int visibilityState = savedInstanceState.getInt("VisibilityState");
+            tvHexStr.setVisibility(visibilityState);
+            tvRGBLabel.setVisibility(visibilityState);
+            tvhexColorCode.setVisibility(visibilityState);
+            tvRGBCode.setVisibility(visibilityState);
 
         } else {
             Log.d("savedInstanceState", "savedInstanceState is null");
@@ -267,12 +274,12 @@ public class MainActivity extends AppCompatActivity {
             setHTMLText(tvHexStr, bgColor);
             tvRGBCode.setText(getRGB(tvHexStr.getText()));
             setTextViewColors();
-            etBrghtness.setText(String.format(Integer.toString((int) value), "%d"), TextView.BufferType.EDITABLE);
+            etBrightness.setText(String.format(Integer.toString((int) value), "%d"), TextView.BufferType.EDITABLE);
 
         });
 
         //Map Brightness edit text to change the Brightness slider's value when the text is directly changed
-        etBrghtness.addTextChangedListener(new TextWatcher() {
+        etBrightness.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //Log.d("slider", "Hue edit beforeTextChanged called");
@@ -282,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //Log.d("slider", "Hue edit onTextChanged called");
                 if (s.length() != 0) {
-                    etBrghtness.setSelection(s.length());
+                    etBrightness.setSelection(s.length());
                 }
             }
 
@@ -294,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (Float.parseFloat(s.toString()) > 100) {
                         Toast.makeText(getApplicationContext(), "Value should be less than 100", Toast.LENGTH_LONG).show();
-                        etBrghtness.setText("");
+                        etBrightness.setText("");
                     } else {
                         sliderBright.setValue(Float.parseFloat(s.toString()));
                     }
@@ -303,8 +310,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //add listener to button to change background color when clicked
-        // bgBtnOnClickListener(bgToggleBtn);
+        //add listener to button to hide Hex and RGB codes when clicked
+        hide_content_btn.setOnClickListener((view) -> {
+            if (hide_content_btn.getText().equals(getResources().getString(R.string.hide))) {
+                hide_content_btn.setText(R.string.show);
+                tvHexStr.setVisibility(View.INVISIBLE);
+                tvRGBLabel.setVisibility(View.INVISIBLE);
+                tvhexColorCode.setVisibility(View.INVISIBLE);
+                tvRGBCode.setVisibility(View.INVISIBLE);
+            } else {
+                hide_content_btn.setText(R.string.hide);
+                tvHexStr.setVisibility(View.VISIBLE);
+                tvRGBLabel.setVisibility(View.VISIBLE);
+                tvhexColorCode.setVisibility(View.VISIBLE);
+                tvRGBCode.setVisibility(View.VISIBLE);
+            }
+        });
 
     }
 
@@ -371,6 +392,9 @@ public class MainActivity extends AppCompatActivity {
         outState.putFloat("sliderHueValue", sliderHue.getValue());
         outState.putFloat("sliderSatValue", sliderSat.getValue());
         outState.putFloat("sliderBrightValue", sliderBright.getValue());
+        outState.putCharSequence("HideContentBtnState", hide_content_btn.getText());
+        outState.putInt("VisibilityState", tvHexStr.getVisibility());
+
     }
 
     //Initializes the starting values
@@ -393,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
     private void setTextViewColors() {
         setComplimentaryColor(screenView, tvHexStr);
         int complimentaryColor = tvHexStr.getCurrentTextColor();
-        tvNerdmcduck.setTextColor(complimentaryColor);
+        // tvNerdmcduck.setTextColor(complimentaryColor);
         tvhexColorCode.setTextColor(complimentaryColor);
         tvRGBCode.setTextColor(complimentaryColor);
         tvRGBLabel.setTextColor(complimentaryColor);
@@ -489,39 +513,6 @@ public class MainActivity extends AppCompatActivity {
                 screenView.setBackgroundColor(hsvToColor(0f, 0f, 1f));
                 break;
         }
-    }
-
-    /**
-     * Add listener to button to change background color when clicked
-     *
-     * @param bgToggleBtn - The button for which we would attached this listener to
-     *                    This is no longer used. This button will be repurposed to do something else
-     */
-    protected void bgBtnOnClickListener(@org.jetbrains.annotations.NotNull Button bgToggleBtn) {
-        @ColorInt
-        int[] color = new int[]{Color.GREEN, Color.BLUE, Color.BLACK, Color.RED, Color.WHITE, Color.CYAN, Color.GRAY,
-                Color.MAGENTA, Color.YELLOW, Color.DKGRAY};
-
-        bgToggleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int colorLength = color.length;
-
-                Random random = new Random();
-                int rNum = random.nextInt(colorLength);
-
-                screenView.setBackgroundColor(color[rNum]);
-
-                if (color[rNum] == Color.DKGRAY || color[rNum] == Color.WHITE ||
-                        color[rNum] == Color.BLACK) {
-                    tvNerdmcduck.setTextColor(Color.parseColor("#FF9800")); //orange
-                } else if (color[rNum] == Color.YELLOW) {
-                    tvNerdmcduck.setTextColor(Color.BLUE);
-                } else {
-                    tvNerdmcduck.setTextColor(Color.WHITE);
-                }
-            }
-        });
     }
 
     //convert HSV components to corresponding ARGB Colors with Alpha set to 0xFF
