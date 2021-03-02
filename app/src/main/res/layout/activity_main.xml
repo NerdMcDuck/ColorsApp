@@ -9,33 +9,14 @@
     android:visibility="visible"
     tools:context="com.nerdmcduck.colors.MainActivity">
 
-    <!-- <Button
-         android:id="@+id/bg_toggle_btn"
-         style="@style/Widget.AppCompat.Button.Borderless"
-         android:layout_width="163dp"
-         android:layout_height="wrap_content"
-         android:layout_centerInParent="true"
-         android:layout_marginEnd="110dp"
-         android:layout_marginBottom="43dp"
-         android:fontFamily="monospace"
-         android:text="@string/hello_world"
-         android:textAllCaps="true"
-         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-         android:textColor="#FFFFFF"
-
-         android:textStyle="bold"
-         android:typeface="monospace"
-         app:strokeColor="#02CD1A1A" /> -->
-
 
     <!-- Continuous slider -->
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/color_display_view"
-        android:layout_width="407dp"
-        android:layout_height="563dp"
+        android:layout_width="match_parent"
+        android:layout_height="522dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="5dp"
         android:background="@color/Transparent"
         android:labelFor="@id/hexString"
         android:orientation="vertical"
@@ -106,7 +87,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearSliderView"
         android:layout_width="401dp"
-        android:layout_height="187dp"
+        android:layout_height="199dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="50dp"
@@ -115,8 +96,6 @@
         android:labelFor="@id/hexString"
         android:orientation="vertical"
         android:paddingLeft="16dp"
-
-
         android:paddingRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +105,7 @@
 
         <!-- Hue -->
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -182,7 +161,7 @@
 
         <!-- Saturation -->
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -239,7 +218,7 @@
 
         <!-- Value/Brightness -->
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -294,7 +273,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/nerdmcduck"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
@@ -303,7 +282,19 @@
             android:fontFamily="@font/aldrich"
             android:text="@string/NerdMcDuck"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" /> -->
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/hide_content_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/amaranth_bold"
+            android:text="@string/hide"
+            android:textSize="20sp"
+            app:rippleColor="@color/design_default_color_secondary_variant"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

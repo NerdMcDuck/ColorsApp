@@ -9,25 +9,6 @@
     android:visibility="visible"
     tools:context="com.nerdmcduck.colors.MainActivity">
 
-    <!-- <Button
-         android:id="@+id/bg_toggle_btn"
-         style="@style/Widget.AppCompat.Button.Borderless"
-         android:layout_width="163dp"
-         android:layout_height="wrap_content"
-         android:layout_centerInParent="true"
-         android:layout_marginEnd="110dp"
-         android:layout_marginBottom="43dp"
-         android:fontFamily="monospace"
-         android:text="@string/hello_world"
-         android:textAllCaps="true"
-         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-         android:textColor="#FFFFFF"
-
-         android:textStyle="bold"
-         android:typeface="monospace"
-         app:strokeColor="#02CD1A1A" /> -->
-
-
     <!-- Continuous slider -->
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -121,8 +102,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearSliderView"
         android:layout_width="477dp"
-        android:layout_height="187dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="203dp"
 
 
         android:background="#99FFFFFF"
@@ -307,7 +287,18 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/hide_content_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/amaranth_bold"
+            android:text="@string/hide"
+            android:textSize="20sp"
+            app:rippleColor="@color/design_default_color_secondary_variant"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        <!--<TextView
             android:id="@+id/nerdmcduck"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
@@ -316,7 +307,7 @@
             android:fontFamily="@font/aldrich"
             android:text="@string/NerdMcDuck"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/> -->
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
