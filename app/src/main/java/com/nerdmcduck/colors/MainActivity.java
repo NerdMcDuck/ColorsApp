@@ -156,9 +156,7 @@ public class MainActivity extends AppCompatActivity {
             setTextViewColors();
             etHue.setText(String.format(Integer.toString((int) value), "%d"), TextView.BufferType.EDITABLE);
 
-
             Log.d("slider", "text direction: " + etHue.getTextDirection());
-
         });
 
         //Map Hue edit text to change the Hue slider's value when the text is directly changed
@@ -204,12 +202,13 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(@NonNull Slider slider) {
                 // Responds to when slider's touch event is being stopped
                 commonHSV = getHSV(getViewColorProperties(screenView).getColor());
+
             }
         });
         // Responds to when slider's value is being changed
         sliderSat.addOnChangeListener((slider, value, fromUser) -> {
 
-            Log.d("slider", slider.toString().substring(slider.toString().indexOf("app")) + " updating: " + value);
+           // Log.d("slider", slider.toString().substring(slider.toString().indexOf("app")) + " updating: " + value);
             int bgColor = hsvToColor(commonHSV[0], value / 100.0f, commonHSV[2]);
             screenView.setBackgroundColor(bgColor);
             setHTMLText(tvHexStr, bgColor);
@@ -256,12 +255,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStartTrackingTouch(@NonNull Slider slider) {
                 // Responds to when slider's touch event is being started
+                if (sliderBright.getValue() < 0.1) {
+                    commonHSV[0] = sliderHue.getValue();
+                    commonHSV[1] = sliderSat.getValue();
+                }
             }
 
             @Override
             public void onStopTrackingTouch(@NonNull Slider slider) {
                 // Responds to when slider's touch event is being stopped
                 commonHSV = getHSV(getViewColorProperties(screenView).getColor());
+                //Log.d("slider", "hue: " + commonHSV[0] + " Sat: " + commonHSV[1] + " bright: " + commonHSV[2]);
             }
         });
         // Responds to when slider's value is being changed
